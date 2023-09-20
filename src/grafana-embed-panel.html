@@ -1,0 +1,85 @@
+<script type="text/javascript">
+    RED.nodes.registerType("grafana-embed-panel",{
+        category: "grafana",
+        color: "#c28285",
+        defaults: {
+            name: {value: "Embed Grafana Panel"},
+            selectedDashboardUID: {value: "",required: true},
+            selectedPanelID: {value: "" ,required: true},
+            width: {value: 450 ,required: true},
+            height: {value: 200 ,required: true},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "tn_dark.svg",
+        outputLabels: function(index) {
+            return "gcs path";
+        },
+        label: function() {
+            return this.name|| "task-import";
+        },
+        oneditprepare: function() {
+            var node=this;
+
+            $("#node-input-selectedDashboardUID").change(function() {
+                console.log(`CHANGE`, this.value)
+                    if(this.value) {
+                        $.getJSON(`grafana/dashboards/${this.value}`,function(data) {
+                            $("#node-input-selectedPanelID").children().remove()    
+                            data.dashboard.panels.forEach((panel) => {
+                                $("#node-input-selectedPanelID").append(
+                                    `<option value="${panel.id}">${panel.title}</option>`
+                                );
+                            });
+                            if(node.selectedPanelID){
+                                $("#node-input-selectedPanelID").val(node.selectedPanelID);
+                            }
+                    });
+                    
+                }
+                
+                
+            });
+
+            $.getJSON("grafana/dashboards",function(dashboards) {
+                dashboards.forEach((dasbhoard) => {
+                    $("#node-input-selectedDashboardUID").append(
+                        `<option value="${dasbhoard.uid}">${dasbhoard.title}</option>`
+                    );
+                });
+                if(node.selectedDashboardUID) {
+                    $("#node-input-selectedDashboardUID").val(node.selectedDashboardUID);
+                    $("#node-input-selectedDashboardUID").trigger("change");
+                }
+            });
+        },
+    });
+</script>
+
+<script type="text/html" data-template-name="grafana-embed-panel">
+  <h4>Settings</h4>
+  <div class="form-row">
+      <label for="node-input-name"><i class="icon-tag"></i>name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+      <label for="node-input-selectedDashboardUID"></i>Dashboard</label>
+      <select id="node-input-selectedDashboardUID">
+      </select>
+  </div>
+  <div class="form-row">
+    <label for="node-input-selectedPanelID"></i>Panel</label>
+    <select id="node-input-selectedPanelID">
+    </select>
+  </div>
+  <div class="form-row">
+    <label for="node-input-width"></i>Width</label>
+    <input type="number" id="node-input-width" placeholder="">
+  </div>
+  <div class="form-row">
+    <label for="node-input-height"></i>Height</label>
+    <input type="number" id="node-input-height" placeholder="">
+  </div>
+</div>
+</script>
+
