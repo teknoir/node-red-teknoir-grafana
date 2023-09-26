@@ -1,0 +1,31 @@
+{
+  "name": "node-red-teknoir-grafana",
+  "version": "0.0.1",
+  "description": "Nodes that allow for embedding Grafana graphs in the Teknoir Devstudio.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teknoir/node-red-teknoir-grafana.git"
+  },
+  "keywords": [
+    "node-red",
+    "teknoir",
+    "nodered",
+    "grafana"
+  ],
+  "node-red": {
+    "nodes": {
+      "ui-grafana-embed-panel": "src/ui-grafana-embed-panel.js"
+    }
+  },
+  "author": "Anders Åslund <anders.aslund@teknoir.ai>",
+  "bugs": {
+    "url": "https://teknoir.ai"
+  },
+  "homepage": "https://teknoir.ai",
+  "dependencies": {
+    "node-fetch": "2.6.0"
+  }
+}
