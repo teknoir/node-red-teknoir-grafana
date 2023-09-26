@@ -26,6 +26,6 @@
   },
   "homepage": "https://teknoir.ai",
   "dependencies": {
-    "node-fetch": "2.6.0"
+    "node-fetch": "2.6.7"
   }
 }
