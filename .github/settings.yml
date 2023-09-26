@@ -3,7 +3,7 @@
 # See https://developer.github.com/v3/repos/#edit for all available settings.
 repository:
   # The name of the repository. Changing this will rename the repository
-  name: node-red-teknoir-push-notifications
+  name: node-red-teknoir-grafana
 
   # A short description of the repository that will show up on GitHub
   description: Nodes that allow for embedding Grafana graphs in the Teknoir Devstudio.
@@ -12,7 +12,7 @@ repository:
   homepage: https://teknoir.cloud
 
   # A comma-separated list of topics to set on the repository
-  topics: platform, devstudio, node-red, push-notifications
+  topics: platform, devstudio, node-red, grafana
 
   # Either `true` to make the repository private, or `false` to make it public.
   private: false
